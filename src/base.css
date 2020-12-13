@@ -22,7 +22,7 @@ body {
 }
 
 
-/* react-three-fiber styling */
+/* START react-three-fiber styling */
 html,
 body,
 #root {
@@ -31,6 +31,7 @@ body,
   margin: 0;
   padding: 0;
 }
+/* END react-three-fiber styling */
 
 
 /* Page Loader */
