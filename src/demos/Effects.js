@@ -45,14 +45,15 @@ export function Effects() {
   const composer = useRef()
   const savePass = useRef()
   const blendPass = useRef()
-  const swap = useRef(false)
+  const swap = useRef(false) // Whether we need to swap the delay buffers
   const { scene, gl, size, camera } = useThree()
   const { rtA, rtB } = useMemo(() => {
+    // Spare render targets for holding the previous two individual frames
     const rtA = new THREE.WebGLRenderTarget(size.width, size.height)
     const rtB = new THREE.WebGLRenderTarget(size.width, size.height)
     return { rtA, rtB }
   }, [size])
-  const pixelRatio = gl.getPixelRatio()
+  const pixelRatio = gl.getPixelRatio() // Needed for anti-aliasing pass
   useEffect(() => void composer.current.setSize(size.width, size.height), [size])
   useFrame(() => {
     composer.current.render()
