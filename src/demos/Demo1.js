@@ -12,7 +12,7 @@ const roundedSquareWave = (t, delta, a, f) => {
 }
 
 function Dots() {
-  const ref = useRef()
+  const ref = useRef() // Reference to our InstancedMesh
   const { vec, transform, positions, distances } = useMemo(() => {
     // Variables for intermediary calculations
     const vec = new THREE.Vector3()

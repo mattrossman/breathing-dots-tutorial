@@ -1,16 +1,10 @@
-import React, { useLayoutEffect, useMemo, useRef } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame } from 'react-three-fiber'
 import { Effects } from './Effects'
-import { proxy, useProxy } from 'valtio'
 import { useSpring } from '@react-spring/three'
 import * as THREE from 'three'
 
 // INTERACTIVE VERSION
-
-const state = proxy({
-  ticks: 0,
-  clickSpring: 0
-})
 
 const roundedSquareWave = (t, delta = 0.1, a = 1, f = 1 / 10) => {
   // Equation from https://dsp.stackexchange.com/a/56529
@@ -18,21 +12,15 @@ const roundedSquareWave = (t, delta = 0.1, a = 1, f = 1 / 10) => {
   return ((2 * a) / Math.PI) * Math.atan(Math.sin(2 * Math.PI * t * f) / delta)
 }
 
-// Vector pointing to the right (for angle calculations)
-const right = new THREE.Vector3(1, 0, 0)
-
-function Dots({ duration, ...props }) {
-  const ref = useRef()
-  const snap = useProxy(state)
-  const { tSpring, clickSpring } = useSpring({
-    tSpring: snap.ticks,
-    clickSpring: snap.ticks % 2 === 1 ? 1 : 0,
-    config: { tension: 20, friction: 20, clamp: true }
-  })
-  const { vec, transform, vec3Mouse, focus, positions } = useMemo(() => {
+function Dots({ ticksSpring, clickSpring, duration, ...props }) {
+  const ref = useRef() // Reference to our InstancedMesh
+  const { vec, right, transform, vec3Mouse, focus, positions } = useMemo(() => {
     // Variables for intermediary calculations
     const vec = new THREE.Vector3()
     const transform = new THREE.Matrix4()
+
+    // Vector pointing to the right (for angle calculations)
+    const right = new THREE.Vector3(1, 0, 0)
 
     // True cursor position in 3D space
     const vec3Mouse = new THREE.Vector3()
@@ -56,18 +44,16 @@ function Dots({ duration, ...props }) {
       position.y += Math.random() * 0.3
       return position
     })
-    return { vec, transform, vec3Mouse, focus, positions }
+    return { vec, right, transform, vec3Mouse, focus, positions }
   }, [])
   useFrame(({ mouse, viewport }) => {
     // Convert mouse screen coords to 3D scene coords
     vec3Mouse.x = (mouse.x * viewport.width) / 2
     vec3Mouse.y = (mouse.y * viewport.height) / 2
 
-    // Update global spring progress (used in pointer handlers)
-    state.clickSpring = clickSpring.get()
     for (let i = 0; i < 10000; ++i) {
       // Drift focus to center as click is released
-      focus.copy(vec3Mouse).multiplyScalar(state.clickSpring)
+      focus.copy(vec3Mouse).multiplyScalar(clickSpring.get())
 
       // Vec holds the dot position relative to the focus point
       vec.copy(positions[i]).sub(focus)
@@ -76,7 +62,7 @@ function Dots({ duration, ...props }) {
       const dist = vec.length() + Math.cos(vec.angleTo(right) * 8) * 0.5
 
       // This adjusts the wave input to set a suitable phase and frequency
-      const t = tSpring.get() / 2 + 1 / 2 - dist / 100
+      const t = ticksSpring.get() / 2 + 1 / 2 - dist / 100
       const wave = roundedSquareWave(t, 0.15 + (0.2 * dist) / 72, 0.4, 1)
 
       // Scale dot position relative to the focus point
@@ -97,22 +83,32 @@ function Dots({ duration, ...props }) {
 }
 
 export default function App() {
+  const [ticks, setTicks] = useState(0)
+  const { ticksSpring, clickSpring } = useSpring({
+    ticksSpring: ticks, // Springy tick value (each click / release is a tick)
+    clickSpring: ticks % 2 === 1 ? 1 : 0, // Springy click factor (1 means clicked, 0 means released)
+    config: { tension: 20, friction: 20, clamp: true }
+  })
   const bind = {
     onPointerDown: (e) => {
+      // Capture the pointer so it's still tracked outside the window
       e.target.setPointerCapture(e.pointerId)
-      state.ticks++
+      setTicks(ticks + 1)
     },
-    onPointerUp: (e) => {
-      if (state.ticks % 2 === 1) {
-        if (state.clickSpring > 0.5) state.ticks++
-        else state.ticks--
+    onPointerUp: () => {
+      // Prevent misfires
+      if (ticks % 2 === 1) {
+        // Only finish the animation if held down for long enough
+        if (clickSpring.get() > 0.5) setTicks(ticks + 1)
+        // Otherwise undo the contraction (this way you can't speed up the animation by spam clicking)
+        else setTicks(ticks - 1)
       }
     }
   }
   return (
     <Canvas orthographic colorManagement={false} camera={{ position: [0, 0, 100], zoom: 20 }} {...bind}>
       <color attach="background" args={['black']} />
-      <Dots duration={3.8} />
+      <Dots ticksSpring={ticksSpring} clickSpring={clickSpring} duration={3.8} />
       <Effects />
     </Canvas>
   )
