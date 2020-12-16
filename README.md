@@ -6,9 +6,9 @@ By Matt Rossman
 
 ![Breathing Dots screenshot](./screenshot.png)
 
-[Article on Codrops](https://tympanus.net/codrops/?p=)
+[Article on Codrops](https://tympanus.net/codrops/?p=52356)
 
-[Demo](http://tympanus.net/Development/BreathingDots/)
+[Demo](http://tympanus.net/Tutorials/BreathingDots/)
 
 ## Installation
 
