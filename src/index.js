@@ -27,7 +27,7 @@ function App() {
       <div className="content">
         <h2 className="content__title">Spirit of Rythm</h2>
       </div>
-      <div className="animation">
+      <div id="animation">
         <Switch>
           <Route exact path="/demo1">
             <Demo1 />
