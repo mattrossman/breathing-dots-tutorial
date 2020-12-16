@@ -1,6 +1,7 @@
 import React, { useMemo, useRef } from 'react'
 import { Canvas, useFrame } from 'react-three-fiber'
 import { Effects } from './Effects'
+import { ResizeObserver } from '@juggle/resize-observer'
 import * as THREE from 'three'
 
 // NON-INTERACTIVE VERSION
@@ -72,9 +73,13 @@ function Dots() {
 }
 
 export default function App() {
-  // Disabling colorManagement gives us raw colors (pure whites)
   return (
-    <Canvas orthographic camera={{ zoom: 20 }} colorManagement={false}>
+    <Canvas
+      orthographic
+      camera={{ zoom: 20 }}
+      colorManagement={false} // Disabling colorManagement gives us raw colors (pure whites)
+      resize={{ polyfill: ResizeObserver }} // Allows @react-spring/three to work in Safari
+    >
       <color attach="background" args={['black']} />
       <Effects />
       <Dots />

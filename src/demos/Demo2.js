@@ -2,6 +2,7 @@ import React, { useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame } from 'react-three-fiber'
 import { Effects } from './Effects'
 import { useSpring } from '@react-spring/three'
+import { ResizeObserver } from '@juggle/resize-observer'
 import * as THREE from 'three'
 
 // INTERACTIVE VERSION
@@ -106,7 +107,13 @@ export default function App() {
     }
   }
   return (
-    <Canvas orthographic colorManagement={false} camera={{ position: [0, 0, 100], zoom: 20 }} {...bind}>
+    <Canvas
+      orthographic
+      colorManagement={false}
+      camera={{ position: [0, 0, 100], zoom: 20 }}
+      resize={{ polyfill: ResizeObserver }}  // Allows @react-spring/three to work in Safari
+      {...bind}
+    >
       <color attach="background" args={['black']} />
       <Dots ticksSpring={ticksSpring} clickSpring={clickSpring} duration={3.8} />
       <Effects />
