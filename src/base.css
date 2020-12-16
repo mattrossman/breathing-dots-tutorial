@@ -10,68 +10,33 @@
 
 body {
 	margin: 0;
-	--color-text: #111;
-	--color-bg: #fff;
-	--color-link: #aaa;
-	--color-link-hover: #000;
+	--color-text: #fff;
+	--color-bg: #000;
+	--color-link: #fff;
+	--color-link-hover: #fff;
 	color: var(--color-text);
 	background-color: var(--color-bg);
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	font-family: mr-eaves-xl-modern, sans-serif;
 }
 
-
 /* START react-three-fiber styling */
-html,
-body,
 #root {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: 0;
   padding: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.7;
+
 }
 /* END react-three-fiber styling */
 
-
-/* Page Loader */
-.js .loading::before,
-.js .loading::after {
-	content: '';
-	position: fixed;
-	z-index: 1000;
-}
-
-.js .loading::before {
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: var(--color-bg);
-}
-
-.js .loading::after {
-	top: 50%;
-	left: 50%;
-	width: 60px;
-	height: 60px;
-	margin: -30px 0 0 -30px;
-	border-radius: 50%;
-	opacity: 0.4;
-	background: var(--color-link);
-	animation: loaderAnim 0.7s linear infinite alternate forwards;
-
-}
-
-@keyframes loaderAnim {
-	to {
-		opacity: 1;
-		transform: scale3d(0.5,0.5,1);
-	}
-}
-
 a {
-	text-decoration: none;
+	text-decoration: underline;
 	color: var(--color-link);
 	outline: none;
 }
@@ -80,6 +45,7 @@ a:hover,
 a:focus {
 	color: var(--color-link-hover);
 	outline: none;
+	text-decoration: none;
 }
 
 .frame {
@@ -108,11 +74,6 @@ a:focus {
 	margin: 1rem 0;
 }
 
-.frame__demo--current,
-.frame__demo--current:hover {
-	color: var(--color-text);
-}
-
 .content {
 	display: flex;
 	flex-direction: column;
@@ -121,6 +82,15 @@ a:focus {
 	position: relative;
 	justify-content: flex-start;
 	align-items: center;
+	pointer-events: none;
+}
+
+.content__title {
+	font-family: house-of-cards, serif;
+	font-weight: 700;
+	font-size: 8vw;
+	margin: 0;
+	line-height: 1;
 }
 
 @media screen and (min-width: 53em) {
@@ -135,35 +105,30 @@ a:focus {
 		width: 100%;
 		max-width: none;
 		height: 100vh;
-		padding: 3rem;
+		padding: 2rem;
 		pointer-events: none;
-		grid-template-columns: 75% 25%;
+		grid-template-columns: 25% 50% 25%;
 		grid-template-rows: auto auto auto;
-		grid-template-areas: 'title links'
-							'... ...'
-							'... demos';
-	}
-	.frame__title-wrap {
-		grid-area: title;
-		display: flex;
+		grid-template-areas: 'title links author'
+							'... ... ...' 
+							'... demos ...';
 	}
 	.frame__title {
+		grid-area: title;
 		margin: 0;
-	}
-	.frame__tagline {
-		position: relative;
-		margin: 0 0 0 1rem;
-		padding: 0 0 0 1rem;
-		opacity: 0.5;
 	}
 	.frame__demos {
 		margin: 0;
 		grid-area: demos;
-		justify-self: end;
+		justify-self: center;
 	}
 	.frame__links {
 		grid-area: links;
 		padding: 0;
+		justify-self: center;
+	}
+	.frame__author {
+		grid-area: author;
 		justify-self: end;
 	}
 	.frame a {

@@ -8,14 +8,14 @@ By Matt Rossman
 
 [Article on Codrops](https://tympanus.net/codrops/?p=)
 
-[Demo](http://tympanus.net/Development/.../)
+[Demo](http://tympanus.net/Development/BreathingDots/)
 
 ## Installation
 
 Install dependencies:
 
 ```
-yarn
+yarn install
 ```
 
 Compile the code for development and start a local server:
@@ -47,4 +47,4 @@ Follow Codrops: [Twitter](http://www.twitter.com/codrops), [Facebook](http://www
 
 [MIT](LICENSE)
 
-Made with :blue_heart: by [Codrops](http://www.codrops.com)
+Made with :blue_heart:  by [Codrops](http://www.codrops.com)
