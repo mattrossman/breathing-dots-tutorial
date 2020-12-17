@@ -18,6 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:codrops": "PUBLIC_URL=/Tutorials/BreathingDots/ react-scripts build",
+    "build:gh-pages": "PUBLIC_URL=/breathing-dots-tutorial/ react-scripts build && mv build docs",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
