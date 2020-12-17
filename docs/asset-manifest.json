@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/breathing-dots-tutorial/static/css/main.673b64e4.chunk.css",
-    "main.js": "/breathing-dots-tutorial/static/js/main.de59e494.chunk.js",
-    "main.js.map": "/breathing-dots-tutorial/static/js/main.de59e494.chunk.js.map",
+    "main.js": "/breathing-dots-tutorial/static/js/main.b06391ac.chunk.js",
+    "main.js.map": "/breathing-dots-tutorial/static/js/main.b06391ac.chunk.js.map",
     "runtime-main.js": "/breathing-dots-tutorial/static/js/runtime-main.7235fcb9.js",
     "runtime-main.js.map": "/breathing-dots-tutorial/static/js/runtime-main.7235fcb9.js.map",
-    "static/js/2.cc149fde.chunk.js": "/breathing-dots-tutorial/static/js/2.cc149fde.chunk.js",
-    "static/js/2.cc149fde.chunk.js.map": "/breathing-dots-tutorial/static/js/2.cc149fde.chunk.js.map",
+    "static/js/2.e0a2269c.chunk.js": "/breathing-dots-tutorial/static/js/2.e0a2269c.chunk.js",
+    "static/js/2.e0a2269c.chunk.js.map": "/breathing-dots-tutorial/static/js/2.e0a2269c.chunk.js.map",
     "index.html": "/breathing-dots-tutorial/index.html",
     "static/css/main.673b64e4.chunk.css.map": "/breathing-dots-tutorial/static/css/main.673b64e4.chunk.css.map",
-    "static/js/2.cc149fde.chunk.js.LICENSE.txt": "/breathing-dots-tutorial/static/js/2.cc149fde.chunk.js.LICENSE.txt"
+    "static/js/2.e0a2269c.chunk.js.LICENSE.txt": "/breathing-dots-tutorial/static/js/2.e0a2269c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7235fcb9.js",
-    "static/js/2.cc149fde.chunk.js",
+    "static/js/2.e0a2269c.chunk.js",
     "static/css/main.673b64e4.chunk.css",
-    "static/js/main.de59e494.chunk.js"
+    "static/js/main.b06391ac.chunk.js"
   ]
 }
