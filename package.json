@@ -19,12 +19,16 @@
     "build": "react-scripts build",
     "build:codrops": "PUBLIC_URL=/Tutorials/BreathingDots/ react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "node postinstall.js "
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "replace-in-file": "^6.1.0"
+  }
 }

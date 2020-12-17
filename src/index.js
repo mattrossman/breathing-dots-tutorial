@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom'
 import './base.css'
 import Demo1 from './demos/Demo1'
 import Demo2 from './demos/Demo2'
@@ -10,18 +10,27 @@ import Demo2 from './demos/Demo2'
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename="/">
       <div className="frame">
-        <h1 className="frame__title">Recreating a <a href="https://twitter.com/beesandbombs/status/1329796242298245124">Dave Whyte</a> Animation <br />in Three.js and React</h1>
+        <h1 className="frame__title">
+          Recreating a <a href="https://twitter.com/beesandbombs/status/1329796242298245124">Dave Whyte</a> Animation <br />
+          in Three.js and React
+        </h1>
         <div className="frame__links">
           <a href="https://tympanus.net/Development/HorizontalSmoothScrollLayout/">Previous demo</a>
           <a href="https://tympanus.net/codrops/?p=52356">Article</a>
           <a href="https://github.com/mattrossman/breathing-dots-tutorial">GitHub</a>
         </div>
-        <div className="frame__author">Made by <a href="https://twitter.com/the_ross_man">Matt Rossman</a></div>
+        <div className="frame__author">
+          Made by <a href="https://twitter.com/the_ross_man">Matt Rossman</a>
+        </div>
         <div className="frame__demos">
-          <Link to="/demo1" className="frame__demo">Infinite Loop</Link>
-          <Link to="/demo2" className="frame__demo">Interactive (press/hold & release)</Link>
+          <Link to="/demo1" className="frame__demo">
+            Infinite Loop
+          </Link>
+          <Link to="/demo2" className="frame__demo">
+            Interactive (press/hold & release)
+          </Link>
         </div>
       </div>
       <div className="content">
