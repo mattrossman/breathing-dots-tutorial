@@ -14,7 +14,7 @@ function App() {
       <div className="frame">
         <h1 className="frame__title">
           Recreating a <a href="https://twitter.com/beesandbombs/status/1329796242298245124">Dave Whyte</a> Animation <br />
-          in Three.js and React
+          in React-Three-Fiber
         </h1>
         <div className="frame__links">
           <a href="https://tympanus.net/Development/HorizontalSmoothScrollLayout/">Previous demo</a>

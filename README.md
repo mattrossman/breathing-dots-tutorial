@@ -1,4 +1,4 @@
-# Recreating a Dave Whyte Animation in Three.js and React
+# Recreating a Dave Whyte Animation in React-Three-Fiber
 
 Learn how to use instanced rendering and post-processing techniques to recreate a hypnotic animation with react-three-fiber.
 
@@ -47,4 +47,4 @@ Follow Codrops: [Twitter](http://www.twitter.com/codrops), [Facebook](http://www
 
 [MIT](LICENSE)
 
-Made with :blue_heart:  by [Codrops](http://www.codrops.com)
+Made with :blue_heart: by [Codrops](http://www.codrops.com)
