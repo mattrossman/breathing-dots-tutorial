@@ -34,7 +34,7 @@ function App() {
         </div>
       </div>
       <div className="content">
-        <h2 className="content__title">Spirit of Rythm</h2>
+        <h2 className="content__title">Spirit of Rhythm</h2>
       </div>
       <div id="animation">
         <Switch>
